@@ -13,14 +13,16 @@ public class Main {
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		int tamArreglo = 50000;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Ingrese cantidad de hilos para dividir la tarea");
-		int k = sc.nextInt();
+		System.out.println("Ingrese cantidad de tareas");
+		int k=sc.nextInt();
+		System.out.println("Ingrese cantidad de hilos (2,3,4)");
+		int h = sc.nextInt();
 		Random rnd = new Random();
 		int[] arrNum = new int[tamArreglo];
 		for (int i = 0; i < arrNum.length; i++) {
 			arrNum[i] = rnd.nextInt(10) + 1;
 		}
-		ExecutorService executor = Executors.newFixedThreadPool(k);
+		ExecutorService executor = Executors.newFixedThreadPool(h);
 		int indiceInf = 0;
 		int cantCadaHilo = arrNum.length / k;
 		int indiceSup = cantCadaHilo - 1;
