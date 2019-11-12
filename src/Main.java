@@ -13,7 +13,7 @@ public class Main {
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		int tamArreglo = 50000;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Ingrese cantidad de tareas");
+		System.out.println("Ingrese cantidad de tareas en las que se dividira la suma de los elementos");
 		int k=sc.nextInt();
 		System.out.println("Ingrese cantidad de hilos (2,3,4)");
 		int h = sc.nextInt();
@@ -41,19 +41,18 @@ public class Main {
 		Task task = new Task(indiceInf, indiceSup, arrNum);
 		listaTasks.add(task);
 
-		// en este for lleno el arreglo con instancias de Future, donde cada una
-		// contendra el resultado de la Task
+		//listaFuture contendra todas las instancias Future q se generaran por ejecutar las tasks
 		java.util.List<Future<Integer>> listaFuture = executor.invokeAll(listaTasks);
 
 		int sumaArr = 0;
 
-		// en este for recorro ese arreglo de instancias Future para obtener la suma de
+		// en este for recorro la lista instancias Future para obtener la suma de
 		// cada una.
 		for (int i = 0; i < listaFuture.size(); i++) {
 			sumaArr += listaFuture.get(i).get();
 		}
 		executor.shutdown();
-		System.out.println(sumaArr);
+		System.out.println("La suma de los elementos del arreglo es: "+sumaArr);
 
 	}
 }
