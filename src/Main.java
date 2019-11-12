@@ -14,7 +14,7 @@ public class Main {
 		int tamArreglo = 50000;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Ingrese cantidad de tareas en las que se dividira la suma de los elementos");
-		int k=sc.nextInt();
+		int k = sc.nextInt();
 		System.out.println("Ingrese cantidad de hilos (2,3,4)");
 		int h = sc.nextInt();
 		Random rnd = new Random();
@@ -41,7 +41,8 @@ public class Main {
 		Task task = new Task(indiceInf, indiceSup, arrNum);
 		listaTasks.add(task);
 
-		//listaFuture contendra todas las instancias Future q se generaran por ejecutar las tasks
+		// listaFuture contendra todas las instancias Future q se generaran por ejecutar
+		// las tasks
 		java.util.List<Future<Integer>> listaFuture = executor.invokeAll(listaTasks);
 
 		int sumaArr = 0;
@@ -52,7 +53,7 @@ public class Main {
 			sumaArr += listaFuture.get(i).get();
 		}
 		executor.shutdown();
-		System.out.println("La suma de los elementos del arreglo es: "+sumaArr);
+		System.out.println("La suma de los elementos del arreglo es: " + sumaArr);
 
 	}
 }
